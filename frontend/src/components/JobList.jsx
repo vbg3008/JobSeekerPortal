@@ -26,8 +26,10 @@ const JobList = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        // Replace with your actual API endpoint
-        const response = await fetch("http://localhost:5000/api/jobs");
+        // Use environment variable for API endpoint
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/jobs`
+        );
         const data = await response.json();
         setJobs(data);
         setLoading(false);

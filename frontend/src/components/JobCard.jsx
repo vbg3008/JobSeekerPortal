@@ -68,19 +68,25 @@ const JobCard = ({ job, setJobs }) => {
         if (cardRef.current) {
           // Animate before deletion
           await deleteAnimation(cardRef.current).then(async () => {
-            // Replace with your actual API endpoint
-            await fetch(`http://localhost:5000/api/jobs/${job._id}`, {
-              method: "DELETE",
-            });
+            // Use environment variable for API endpoint
+            await fetch(
+              `${import.meta.env.VITE_BACKEND_URL}/api/jobs/${job._id}`,
+              {
+                method: "DELETE",
+              }
+            );
 
             // Update the jobs state by filtering out the deleted job
             setJobs((prevJobs) => prevJobs.filter((j) => j._id !== job._id));
           });
         } else {
           // If card ref is not available, just delete without animation
-          await fetch(`http://localhost:5000/api/jobs/${job._id}`, {
-            method: "DELETE",
-          });
+          await fetch(
+            `${import.meta.env.VITE_BACKEND_URL}/api/jobs/${job._id}`,
+            {
+              method: "DELETE",
+            }
+          );
 
           // Update the jobs state by filtering out the deleted job
           setJobs((prevJobs) => prevJobs.filter((j) => j._id !== job._id));

@@ -163,10 +163,13 @@ const JobTable = ({ jobs, setJobs }) => {
             duration: 0.5,
             ease: "power2.in",
             onComplete: async () => {
-              // Replace with your actual API endpoint
-              await fetch(`http://localhost:5000/api/jobs/${jobId}`, {
-                method: "DELETE",
-              });
+              // Use environment variable for API endpoint
+              await fetch(
+                `${import.meta.env.VITE_BACKEND_URL}/api/jobs/${jobId}`,
+                {
+                  method: "DELETE",
+                }
+              );
 
               // Update the jobs state by filtering out the deleted job
               setJobs((prevJobs) => prevJobs.filter((j) => j._id !== jobId));
@@ -174,7 +177,7 @@ const JobTable = ({ jobs, setJobs }) => {
           });
         } else {
           // If row element doesn't exist, just delete without animation
-          await fetch(`http://localhost:5000/api/jobs/${jobId}`, {
+          await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/jobs/${jobId}`, {
             method: "DELETE",
           });
 

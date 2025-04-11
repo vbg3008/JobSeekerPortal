@@ -1,12 +1,62 @@
-# React + Vite
+# Student Job Tracker - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend for the Student Job Tracker application, built with React, Tailwind CSS, and GSAP animations.
 
-Currently, two official plugins are available:
+## Environment Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application uses environment variables to connect to the backend API. Create the following files in the frontend directory:
 
-## Expanding the ESLint configuration
+### Production Environment (.env)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+VITE_BACKEND_URL=https://jobseekerportal.onrender.com
+```
+
+### Development Environment (.env.development)
+
+```
+VITE_BACKEND_URL=http://localhost:5000
+```
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm install`
+
+Installs all the dependencies required for the application.
+
+### `npm run dev`
+
+Runs the app in development mode.\
+Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
+### `npm run build`
+
+Builds the app for production to the `dist` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+### `npm run preview`
+
+Serves the production build locally for preview purposes.
+
+## Features
+
+- Track job applications with company, role, status, and date information
+- View applications in card or table format
+- Sort and filter applications
+- Dark mode support
+- Responsive design for mobile, tablet, and desktop
+- Keyboard shortcuts for power users
+- Smooth animations for a modern user experience
+
+## Technologies Used
+
+- React
+- React Router
+- Tailwind CSS
+- GSAP (GreenSock Animation Platform)
+- Vite

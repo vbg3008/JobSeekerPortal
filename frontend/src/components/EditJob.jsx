@@ -7,6 +7,7 @@ const EditJob = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { darkMode } = useTheme();
+  const formRef = useRef(null);
   const [formData, setFormData] = useState({
     company: "",
     role: "",
@@ -17,11 +18,14 @@ const EditJob = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
+  // Fetch job data
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        // Replace with your actual API endpoint
-        const response = await fetch(`http://localhost:5000/api/jobs/${id}`);
+        // Use environment variable for API endpoint
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/jobs/${id}`
+        );
         if (!response.ok) {
           throw new Error("Job not found");
         }
@@ -60,14 +64,17 @@ const EditJob = () => {
     setSaving(true);
 
     try {
-      // Replace with your actual API endpoint
-      const response = await fetch(`http://localhost:5000/api/jobs/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      // Use environment variable for API endpoint
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/jobs/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         navigate("/");
@@ -83,18 +90,7 @@ const EditJob = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className={`text-center py-8 ${darkMode ? "text-white" : ""}`}>
-        Loading...
-      </div>
-    );
-  }
-
-  // Form animation ref
-  const formRef = useRef(null);
-
-  // Animate form when loaded
+  // Form animation effect
   useEffect(() => {
     if (formRef.current && !loading) {
       // Initial state
@@ -117,6 +113,14 @@ const EditJob = () => {
       }
     };
   }, [loading]);
+
+  if (loading) {
+    return (
+      <div className={`text-center py-8 ${darkMode ? "text-white" : ""}`}>
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6">
