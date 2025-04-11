@@ -38,7 +38,7 @@ const ApiStatusIndicator = () => {
       >
         <span
           className={`text-xs mr-1 font-medium ${
-            darkMode ? "text-gray-300" : "text-white"
+            darkMode ? "text-gray-300" : "text-black"
           }`}
         >
           API:
